@@ -1,14 +1,17 @@
 import * as React from "react";
 import { WebView } from "react-native-webview";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+// import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View, StatusBar } from "react-native";
 
 export default function Home() {
   return (
-    <WebView
-      style={styles.container}
-      source={{ uri: "https://shivwinmall.in/" }}
-    />
+    <>
+      {/* <StatusBar hidden={"true"} /> */}
+      <WebView
+        style={styles.container}
+        source={{ uri: "https://shivwinmall.in/" }}
+      />
+    </>
   );
 }
 
