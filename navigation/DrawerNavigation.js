@@ -3,6 +3,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import Home from "../screen/Home";
 import LogIn from "../screen/LogIn";
 import Register from "../screen/Register";
+import Account from "../screen/Account";
 import MainStackNavigation from "./StackNavigation";
 
 const Drawer = createDrawerNavigator();
@@ -18,7 +19,7 @@ const DrawerNavigation = () => {
         />
         <Drawer.Screen
           name="Home"
-          component={Home}
+          component={Account}
           options={{ headerShown: false }}
         />
         <Drawer.Screen
