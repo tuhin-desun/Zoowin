@@ -30,21 +30,40 @@ import {
   DrawerItem,
 } from "@react-navigation/drawer";
 
+let exitApp = 0;
+
 export default function App() {
   const webview = useRef(null);
   const [canGoBack, setCanGoBack] = useState(true);
+  const [currentUrl, setCurrentUrl] = useState(true);
+  // const [exitApp, setExitApp] = useState(0);
 
   const onAndroidBackPress = () => {
-    console.log("test2", canGoBack, webview.current);
     if (canGoBack && webview.current) {
-      console.log("test3", canGoBack, webview.current);
       webview.current.goBack();
       return true;
     }
 
-    if (!canGoBack && !webview.current) {
-      console.log("test", canGoBack);
-      BackHandler.exitApp();
+    if (!canGoBack) {
+      // BackHandler.exitApp();
+      // return true;
+
+      setTimeout(() => {
+        // setExitApp(0);
+        exitApp = 0;
+      }, 2000); // 2 seconds to tap second-time
+
+      if (exitApp === 0) {
+        // setExitApp(exitApp + 1);
+        exitApp++;
+
+        ToastAndroid.show(
+          "Press back button twice to exit",
+          ToastAndroid.SHORT
+        );
+      } else if (exitApp === 1) {
+        BackHandler.exitApp();
+      }
       return true;
     }
 
@@ -71,9 +90,11 @@ export default function App() {
       <WebView
         style={styles.container}
         source={{ uri: "https://shivwinmall.in/login" }}
+        // source={{ uri: "https://expo.dev/" }}
         ref={webview}
         onNavigationStateChange={(navState) => {
-          console.log("test4", canGoBack, navState.canGoBack);
+          console.log(navState.url);
+          setCurrentUrl(navState.url);
           setCanGoBack(navState.canGoBack);
         }}
       />
