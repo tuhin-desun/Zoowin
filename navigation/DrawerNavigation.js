@@ -10,8 +10,25 @@ const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = () => {
   return (
-    <NavigationContainer>
-      <Drawer.Navigator>
+    <NavigationContainer
+      theme={{
+        dark: false,
+        colors: {
+          primary: "rgb(255, 45, 85)",
+          background: "red",
+          card: "rgb(255, 255, 255)",
+          text: "rgb(28, 28, 30)",
+          border: "rgb(199, 199, 204)",
+          notification: "rgb(255, 69, 58)",
+        },
+      }}
+    >
+      <Drawer.Navigator
+        screenOptions={{
+          headerShown: false,
+          // drawerActiveBackgroundColor: "#ff5247",
+        }}
+      >
         <Drawer.Screen
           name="Log In"
           options={{ headerShown: false }}
@@ -19,7 +36,7 @@ const DrawerNavigation = () => {
         />
         <Drawer.Screen
           name="Home"
-          component={Account}
+          component={Home}
           options={{ headerShown: false }}
         />
         <Drawer.Screen

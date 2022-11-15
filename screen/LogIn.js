@@ -5,9 +5,11 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Alert, BackHandler } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import Home from "./Home";
+import AppContext from "../context/AppContext";
 
 const LogIn = (props) => {
   const navigation = useNavigation();
+  const context = React.useContext(AppContext);
 
   useEffect(() => {
     // console.log({ props });
