@@ -35,18 +35,18 @@ export default function App() {
   const [canGoBack, setCanGoBack] = useState(true);
 
   const onAndroidBackPress = () => {
-    // console.log("test2", canGoBack, webview.current);
+    console.log("test2", canGoBack, webview.current);
     if (canGoBack && webview.current) {
       console.log("test3", canGoBack, webview.current);
       webview.current.goBack();
       return true;
     }
 
-    // if (canGoBack && !webview.current) {
-    //   console.log("test", canGoBack);
-    //   BackHandler.exitApp();
-    //   return true;
-    // }
+    if (!canGoBack && !webview.current) {
+      console.log("test", canGoBack);
+      BackHandler.exitApp();
+      return true;
+    }
 
     return false;
   };
@@ -72,7 +72,10 @@ export default function App() {
         style={styles.container}
         source={{ uri: "https://shivwinmall.in/login" }}
         ref={webview}
-        onNavigationStateChange={(navState) => setCanGoBack(navState.canGoBack)}
+        onNavigationStateChange={(navState) => {
+          console.log("test4", canGoBack, navState.canGoBack);
+          setCanGoBack(navState.canGoBack);
+        }}
       />
     </>
   );
